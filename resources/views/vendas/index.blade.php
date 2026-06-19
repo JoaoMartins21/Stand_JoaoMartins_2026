@@ -12,6 +12,18 @@
     <table class="table table-striped table-hover">
 
         <thead class="table-dark">
+
+            <form method="GET" action="{{ route('vendas.index') }}" class="mb-3">
+                <div class="input-group">
+                    <input type="text" name="pesquisa" class="form-control" placeholder="Pesquisar venda..."
+                        value="{{ request('pesquisa') }}">
+
+                    <button class="btn btn-dark" type="submit">
+                        Pesquisar
+                    </button>
+                </div>
+            </form>
+            <br>
             <tr>
                 <th>ID</th>
                 <th>Cliente</th>

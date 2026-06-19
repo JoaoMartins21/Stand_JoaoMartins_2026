@@ -10,9 +10,14 @@ class ViaturaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $viaturas = Viatura::all();
+        $pesquisa = $request->pesquisa;
+
+        $viaturas = Viatura::where('marca', 'like', "%$pesquisa%")
+            ->orWhere('modelo', 'like', "%$pesquisa%")
+            ->orWhere('matricula', 'like', "%$pesquisa%")
+            ->get();
 
         return view('viaturas.index', compact('viaturas'));
     }
@@ -36,7 +41,7 @@ class ViaturaController extends Controller
             $dados['foto'] = $request->file('foto')->store('viaturas', 'public');
         }
 
-        
+
 
         Viatura::create($dados);
 
@@ -67,18 +72,23 @@ class ViaturaController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Viatura $viatura)
-    {
-        $dados = $request->all();
+    { {
+            $dados = $request->all();
 
-        if ($request->hasFile('foto')) {
-            $dados['foto'] = $request->file('foto')->store('viaturas', 'public');
+            if (empty($dados['modelo'])) {
+                $dados['modelo'] = $viatura->modelo;
+            }
+
+            if ($request->hasFile('foto')) {
+                $dados['foto'] = $request->file('foto')->store('viaturas', 'public');
+            }
+
+            $viatura->update($dados);
+
+            return redirect()
+                ->route('viaturas.index')
+                ->with('success', 'Viatura atualizada com sucesso!');
         }
-
-        $viatura->update($dados);
-
-        return redirect()
-            ->route('viaturas.index')
-            ->with('success', 'Viatura atualizada com sucesso!');
     }
 
     /**

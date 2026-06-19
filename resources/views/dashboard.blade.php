@@ -11,6 +11,8 @@
             Sistema de Gestão de Clientes, Viaturas e Vendas
         </p>
 
+
+
     </div>
 
     <div class="row justify-content-center mt-4">
@@ -54,5 +56,17 @@
             </div>
         </div>
 
+
+        <div class="d-flex justify-content-center flex-wrap gap-4 mt-4 text-white" style="text-shadow: 1px 1px 5px black;">
+
+            <div>👥 {{ $clientes }} Clientes</div>
+
+            <div>🚗 {{ $viaturas }} Viaturas</div>
+
+            <div>💰 {{ $vendas }} Vendas</div>
+
+            <div>💵 {{ number_format($totalVendido, 2, ',', '.') }} €</div>
+
+        </div>
     </div>
 @endsection

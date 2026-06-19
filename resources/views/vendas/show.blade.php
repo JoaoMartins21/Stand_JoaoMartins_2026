@@ -8,35 +8,53 @@
     <div class="card shadow">
         <div class="card-body">
 
-            <p>
-                <strong>Cliente:</strong>
-                {{ $venda->cliente->nome }}
-            </p>
+            <div class="row">
 
-            <p>
-                <strong>Viatura:</strong>
-                {{ $venda->viatura->marca }}
-                {{ $venda->viatura->modelo }}
-            </p>
+                <div class="col-md-6">
 
-            <p>
-                <strong>Data da Venda:</strong>
-                {{ $venda->data_venda }}
-            </p>
+                    <p>
+                        <strong>Cliente:</strong>
+                        {{ $venda->cliente->nome }}
+                    </p>
 
-            <p>
-                <strong>Valor:</strong>
-                {{ $venda->valor_venda }} €
-            </p>
+                    <p>
+                        <strong>Viatura:</strong>
+                        {{ $venda->viatura->marca }}
+                        {{ $venda->viatura->modelo }}
+                    </p>
 
+                    <p>
+                        <strong>Data da Venda:</strong>
+                        {{ $venda->data_venda }}
+                    </p>
 
-            <a href="{{ route('vendas.index') }}" class="btn btn-dark">
-                Voltar
-            </a>
+                    <p>
+                        <strong>Valor:</strong>
+                        {{ $venda->valor_venda }} €
+                    </p>
 
-            <a href="{{ route('vendas.edit', $venda->id) }}" class="btn btn-warning">
-                Editar
-            </a>
+                    <a href="{{ route('vendas.index') }}" class="btn btn-dark">
+                        Voltar
+                    </a>
+
+                    <a href="{{ route('vendas.edit', $venda->id) }}" class="btn btn-warning">
+                        Editar
+                    </a>
+
+                </div>
+
+                <div class="col-md-6 text-center">
+
+                    @if($venda->viatura->foto)
+                        <img src="{{ asset('storage/' . $venda->viatura->foto) }}"
+                             alt="Fotografia da Viatura"
+                             class="img-fluid rounded shadow"
+                             style="max-height: 450px;">
+                    @endif
+
+                </div>
+
+            </div>
 
         </div>
     </div>

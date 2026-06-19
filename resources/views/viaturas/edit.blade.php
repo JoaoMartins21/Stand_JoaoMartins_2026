@@ -75,7 +75,16 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Fotografia</label>
+                <label class="form-label">Fotografia Atual</label>
+
+                @if ($viatura->foto)
+                    <div class="mb-3">
+                        <img src="{{ asset('storage/' . $viatura->foto) }}" alt="Foto da Viatura" class="img-thumbnail"
+                            style="max-width: 300px;">
+                    </div>
+                @endif
+
+                <label class="form-label">Alterar Fotografia</label>
                 <input type="file" name="foto" class="form-control">
             </div>
 
@@ -203,6 +212,10 @@
 
 
 
+
+
+
+
         document.getElementById('matricula').addEventListener('input', function() {
 
             let valor = this.value
@@ -218,6 +231,35 @@
             }
 
             this.value = valor;
+        });
+
+
+
+
+        document.getElementById('marca').addEventListener('change', function() {
+
+            let marca = this.value;
+
+            let modeloSelect = document.getElementById('modelo');
+
+            modeloSelect.innerHTML =
+                '<option value="">Selecione um modelo</option>';
+
+            if (modelos[marca]) {
+
+                modelos[marca].forEach(function(modelo) {
+
+                    let option = document.createElement('option');
+
+                    option.value = modelo;
+                    option.text = modelo;
+
+                    modeloSelect.appendChild(option);
+
+                });
+
+            }
+
         });
     </script>
 @endsection

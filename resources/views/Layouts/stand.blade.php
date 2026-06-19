@@ -11,7 +11,6 @@
 
 <body>
 
-
     <style>
         body {
             background-image:
@@ -26,11 +25,6 @@
         }
     </style>
 
-
-
-
-
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
 
@@ -38,34 +32,37 @@
                 🚗 Stand Automóveis
             </a>
 
-            <div class="navbar-nav ms-auto">
+            @auth
+                <div class="navbar-nav ms-auto">
 
-                <a class="nav-link" href="{{ route('dashboard') }}">
-                    🏠 Menu Principal
-                </a>
+                    <a class="nav-link" href="{{ route('dashboard') }}">
+                        🏠 Menu Principal
+                    </a>
 
-                <a class="nav-link" href="{{ route('clientes.index') }}">
-                    👤 Clientes
-                </a>
+                    <a class="nav-link" href="{{ route('clientes.index') }}">
+                        👤 Clientes
+                    </a>
 
-                <a class="nav-link" href="{{ route('viaturas.index') }}">
-                    🚗 Viaturas
-                </a>
+                    <a class="nav-link" href="{{ route('viaturas.index') }}">
+                        🚗 Viaturas
+                    </a>
 
-                <a class="nav-link" href="{{ route('vendas.index') }}">
-                    💰 Vendas
-                </a>
+                    <a class="nav-link" href="{{ route('vendas.index') }}">
+                        💰 Vendas
+                    </a>
 
-                <form method="POST" action="{{ route('logout') }}" class="d-flex align-items-center ms-3">
+                    <form method="POST" action="{{ route('logout') }}" class="d-flex align-items-center ms-3">
 
-                    @csrf
+                        @csrf
 
-                    <button type="submit" class="btn btn-danger btn-sm">
-                        Logout
-                    </button>
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            Logout
+                        </button>
 
-                </form>
-            </div>
+                    </form>
+
+                </div>
+            @endauth
 
         </div>
     </nav>

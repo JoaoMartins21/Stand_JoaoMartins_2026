@@ -8,27 +8,44 @@
         <div class="card shadow">
             <div class="card-body">
 
-                <p><strong>Marca:</strong> {{ $viatura->marca }}</p>
+                <div class="row">
 
-                <p><strong>Modelo:</strong> {{ $viatura->modelo }}</p>
+                    <div class="col-md-6">
 
-                <p><strong>Matrícula:</strong> {{ $viatura->matricula }}</p>
+                        <p><strong>Marca:</strong> {{ $viatura->marca }}</p>
 
-                <p><strong>Ano:</strong> {{ $viatura->ano }}</p>
+                        <p><strong>Modelo:</strong> {{ $viatura->modelo }}</p>
 
-                <p><strong>Quilómetros:</strong> {{ $viatura->quilometros }}</p>
+                        <p><strong>Matrícula:</strong> {{ $viatura->matricula }}</p>
 
-                <p><strong>Preço:</strong> {{ $viatura->preco }} €</p>
+                        <p><strong>Ano:</strong> {{ $viatura->ano }}</p>
 
-                <p><strong>Estado:</strong> {{ $viatura->estado }}</p>
+                        <p><strong>Quilómetros:</strong> {{ $viatura->quilometros }}</p>
 
-                <a href="{{ route('viaturas.index') }}" class="btn btn-secondary">
-                    Voltar
-                </a>
+                        <p><strong>Preço:</strong> {{ $viatura->preco }} €</p>
 
-                <a href="{{ route('viaturas.edit', $viatura->id) }}" class="btn btn-warning">
-                    Editar
-                </a>
+                        <p><strong>Estado:</strong> {{ $viatura->estado }}</p>
+
+                        <a href="{{ route('viaturas.index') }}" class="btn btn-secondary">
+                            Voltar
+                        </a>
+
+                        <a href="{{ route('viaturas.edit', $viatura->id) }}" class="btn btn-warning">
+                            Editar
+                        </a>
+
+                    </div>
+
+                    <div class="col-md-6 text-center">
+
+                        @if ($viatura->foto)
+                            <img src="{{ asset('storage/' . $viatura->foto) }}" alt="Fotografia da Viatura"
+                                class="img-fluid rounded shadow" style="max-height: 450px;">
+                        @endif
+
+                    </div>
+
+                </div>
 
             </div>
         </div>

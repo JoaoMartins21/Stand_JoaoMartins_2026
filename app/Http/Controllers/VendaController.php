@@ -9,9 +9,15 @@ use Illuminate\Http\Request;
 
 class VendaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $vendas = Venda::with(['cliente', 'viatura'])->get();
+        $pesquisa = $request->pesquisa;
+
+        $vendas = Venda::with(['cliente', 'viatura'])
+            ->whereHas('cliente', function ($query) use ($pesquisa) {
+                $query->where('nome', 'like', "%$pesquisa%");
+            })
+            ->get();
 
         return view('vendas.index', compact('vendas'));
     }
