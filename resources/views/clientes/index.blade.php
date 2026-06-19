@@ -66,4 +66,10 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="mt-3">
+        <a href="{{ route('dashboard') }}" class="btn btn-dark">
+            ← Voltar ao Menu
+        </a>
+    </div>
 @endsection
